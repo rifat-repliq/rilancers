@@ -32,6 +32,7 @@ class User(AbstractUser, PermissionsMixin):
     ]
     phone = PhoneNumberField(unique=True, region="BD")
     avatar = models.ImageField(upload_to="avatars/", blank=True, null=True)
+    date_of_birth = models.DateField(blank=True, null=True)
     role = models.CharField(max_length=20, choices=USER_ROLE_CHOICES, default="SELLER")
 
     objects = UserManager()
