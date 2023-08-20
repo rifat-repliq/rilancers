@@ -7,7 +7,16 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ("phone", "email", "password", "password2")
+        fields = (
+            "first_name",
+            "last_name",
+            "role",
+            "date_of_birth",
+            "phone",
+            "email",
+            "password",
+            "password2",
+        )
         extra_kwargs = {
             "password": {"write_only": True},
         }
@@ -18,7 +27,6 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
 
         if password != password2:
             raise serializers.ValidationError({"password": "Passwords do not match."})
-
         return data
 
     def create(self, validated_data):
@@ -26,5 +34,9 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
             phone=validated_data["phone"],
             email=validated_data["email"],
             password=validated_data["password"],
+            first_name=validated_data["first_name"],
+            last_name=validated_data["last_name"],
+            date_of_birth=validated_data["date_of_birth"],
+            role=validated_data["role"],
         )
         return user

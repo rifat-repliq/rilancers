@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.contrib.auth.models import AbstractUser, BaseUserManager, PermissionsMixin
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
@@ -24,16 +25,31 @@ class UserManager(BaseUserManager):
         return self.create_user(phone, password, **extra_fields)
 
 
+def generate_username_from_datetime():
+    """Generate a username using the current date and timestamp"""
+    timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+    return f"user_{timestamp}"
+
+
 class User(AbstractUser, PermissionsMixin):
     USER_ROLE_CHOICES = [
-        ("BUYER", "Buyer"),
         ("SELLER", "Seller"),
+        ("BUYER", "Buyer"),
         ("ORGANIZATION", "Organization"),
     ]
     phone = PhoneNumberField(unique=True, region="BD")
     avatar = models.ImageField(upload_to="avatars/", blank=True, null=True)
     date_of_birth = models.DateField(blank=True, null=True)
     role = models.CharField(max_length=20, choices=USER_ROLE_CHOICES, default="SELLER")
+    username = models.CharField(
+        max_length=150,
+        unique=True,
+        default=generate_username_from_datetime,
+        help_text="Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.",
+        error_messages={
+            "unique": "A user with that username already exists.",
+        },
+    )
 
     objects = UserManager()
 
