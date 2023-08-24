@@ -20,13 +20,8 @@ class RegistrationView(CreateAPIView):
 
         return Response(
             {
-                "user": UserRegistrationSerializer(
-                    user, context=self.get_serializer_context()
-                ).data,
-                "tokens": {
-                    "refresh": str(refresh),
-                    "access": str(refresh.access_token),
-                },
+                "refresh": str(refresh),
+                "access": str(refresh.access_token),
             },
             status=status.HTTP_201_CREATED,
         )

@@ -7,7 +7,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     # Rest framework auth URL's
     path("api-auth/", include("rest_framework.urls")),
-    path("api/", include("api.urls")),
+    path("api/", include("api")),
 ]
 
 if settings.DEBUG:
