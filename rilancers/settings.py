@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "phonenumber_field",
     "apps.auth_r",
     "apps.skill",
+    "apps.me",
 ]
 
 AUTH_USER_MODEL = "auth_r.User"
