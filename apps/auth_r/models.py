@@ -2,6 +2,7 @@ from datetime import datetime
 from django.contrib.auth.models import AbstractUser, BaseUserManager, PermissionsMixin
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
+from apps.skill.models import Skill
 
 
 class UserManager(BaseUserManager):
@@ -37,10 +38,7 @@ class User(AbstractUser, PermissionsMixin):
         ("BUYER", "Buyer"),
         ("ORGANIZATION", "Organization"),
     ]
-    phone = PhoneNumberField(unique=True, region="BD")
-    avatar = models.ImageField(upload_to="avatars/", blank=True, null=True)
-    date_of_birth = models.DateField(blank=True, null=True)
-    role = models.CharField(max_length=20, choices=USER_ROLE_CHOICES, default="SELLER")
+
     username = models.CharField(
         max_length=150,
         unique=True,
@@ -50,6 +48,12 @@ class User(AbstractUser, PermissionsMixin):
             "unique": "A user with that username already exists.",
         },
     )
+    phone = PhoneNumberField(unique=True, region="BD")
+    avatar = models.ImageField(upload_to="avatars/", blank=True, null=True)
+    date_of_birth = models.DateField(blank=True, null=True)
+    role = models.CharField(max_length=20, choices=USER_ROLE_CHOICES, default="SELLER")
+    bio = models.TextField(blank=True)
+    skills = models.ManyToManyField(Skill, blank=True)
 
     objects = UserManager()
 
