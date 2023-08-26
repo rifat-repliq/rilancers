@@ -37,19 +37,21 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # My Apps
+    # External
     "rest_framework",
     "rest_framework_simplejwt",
     "phonenumber_field",
-    "apps.auth_r",
-    "apps.skill",
-    "apps.me",
+    # Internal
+    "api",
+    "auth_r",
+    "skill",
+    "me",
 ]
 
 AUTH_USER_MODEL = "auth_r.User"
 
 AUTHENTICATION_BACKENDS = [
-    "apps.auth_r.backends.PhoneNumberBackend",
+    "auth_r.backends.PhoneNumberBackend",
     "django.contrib.auth.backends.ModelBackend",
 ]
 

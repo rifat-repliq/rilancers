@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class SkillConfig(AppConfig):
+class AuthConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
-    name = "apps.skill"
+    name = "auth_r"

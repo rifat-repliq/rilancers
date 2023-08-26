@@ -2,7 +2,7 @@ from datetime import datetime
 from django.contrib.auth.models import AbstractUser, BaseUserManager, PermissionsMixin
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
-from apps.skill.models import Skill
+from skill.models import Skill
 
 
 class UserManager(BaseUserManager):

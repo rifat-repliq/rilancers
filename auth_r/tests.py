@@ -1,6 +1,6 @@
 from rest_framework.test import APITestCase
 from rest_framework import status
-from apps.auth_r.models import User
+from auth_r.models import User
 
 
 class UserRegistrationAPITestCase(APITestCase):

@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from apps.skill.serializers import SkillModelSerializer
-from apps.auth_r.models import User
+from skill.serializers import SkillModelSerializer
+from auth_r.models import User
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
