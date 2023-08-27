@@ -1,6 +1,5 @@
 from rest_framework.generics import RetrieveUpdateAPIView
 from rest_framework.permissions import IsAuthenticated
-from auth_r.models import User
 from .serializers import UserProfileSerializer
 
 
