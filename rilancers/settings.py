@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     "auth_r",
     "skill",
     "me",
+    "category",
+    "job",
+    "order",
 ]
 
 AUTH_USER_MODEL = "auth_r.User"
